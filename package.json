@@ -1,6 +1,6 @@
 {
   "name": "web-daftar-seed",
-  "version": "1.0.0",
+  "version": "0.0.1-alpha",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -10,7 +10,9 @@
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint": "npm run lint:js && npm run lint:style",
-    "test": "jest"
+    "test": "jest",
+    "lambda:build": "netlify-lambda build functions",
+    "lambda:serve": "netlify-lambda serve functions"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint",
