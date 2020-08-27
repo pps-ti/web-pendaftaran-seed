@@ -22,7 +22,7 @@ _Repository_ ini berisi website untuk pendaftaran acara SEED Universitas Pembang
 # Install dependency
 $ npm ci
 
-# Website dapat diakses di localhost:3000
+# Jalankan website, dapat diakses di localhost:3000
 $ npm run dev
 
 # Build untuk production dan jalankan server
@@ -32,7 +32,7 @@ $ npm run start
 # Build menjadi website statis
 $ npm run generate
 
-# Jalankan cloud functions, dapat di akses di localhost:9000
+# Jalankan cloud functions, dapat di akses di localhost:9000/{nama file fungsi}
 $ npm run lambda:serve
 
 # Build cloud functions, hasilnya akan berada pada folder cloud-functions
