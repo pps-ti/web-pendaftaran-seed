@@ -31,6 +31,12 @@ $ npm run start
 
 # Build menjadi website statis
 $ npm run generate
+
+# Jalankan cloud functions, dapat di akses di localhost:9000
+$ npm run lambda:serve
+
+# Build cloud functions, hasilnya akan berada pada folder cloud-functions
+$ npm run lambda:build
 ```
 
 ****
