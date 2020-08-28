@@ -1,4 +1,5 @@
 # Web Pendaftaran SEED (Dalam Pengerjaan)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6d76655f-e511-4618-8563-830617abccb6/deploy-status)](https://app.netlify.com/sites/pendaftaran-seed/deploys)
 
 _Repository_ ini berisi website untuk pendaftaran acara SEED Universitas Pembangunan Nasional "Veteran" Jawa Timur. Website dibangun menggunakan Nuxt.js dan Netlify Functions dengan Vuesax sebagai pustaka komponen _front-end_ nya.
 
