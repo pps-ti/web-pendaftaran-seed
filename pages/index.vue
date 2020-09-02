@@ -1,6 +1,44 @@
 <template>
   <div class="container">
-    <vs-button>Hey tayo</vs-button>
+    <a-form :form="form">
+      <a-form-item>
+        <a-input placeholder="NPM"></a-input>
+      </a-form-item>
+
+      <a-form-item>
+        <a-input placeholder="Nama"></a-input>
+      </a-form-item>
+
+      <a-form-item>
+        <a-input placeholder="Angkatan"></a-input>
+      </a-form-item>
+
+      <a-form-item>
+        <a-select placeholder="Gender">
+          <a-select-option value="Laki - laki">Laki - laki</a-select-option>
+          <a-select-option value="Perempuan">Perempuan</a-select-option>
+        </a-select>
+      </a-form-item>
+
+      <a-form-item>
+        <a-select placeholder="Bawa laptop?">
+          <a-select-option value="Ya">Ya</a-select-option>
+          <a-select-option value="Tidak">Tidak</a-select-option>
+        </a-select>
+      </a-form-item>
+
+      <a-form-item>
+        <a-input placeholder="Alamat surel"></a-input>
+      </a-form-item>
+
+      <a-form-item>
+        <a-textarea placeholder="Alasan mengikuti" allow-clear></a-textarea>
+      </a-form-item>
+
+      <a-form-item>
+        <a-button type="primary">Primary</a-button>
+      </a-form-item>
+    </a-form>
   </div>
 </template>
 
