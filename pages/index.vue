@@ -2,33 +2,37 @@
   <div class="container">
     <a-form :form="form">
       <a-form-item>
-        <a-input placeholder="NPM"></a-input>
-      </a-form-item>
-
-      <a-form-item>
         <a-input placeholder="Nama"></a-input>
       </a-form-item>
 
       <a-form-item>
-        <a-input placeholder="Angkatan"></a-input>
+        <a-input placeholder="NPM"></a-input>
       </a-form-item>
 
       <a-form-item>
-        <a-select placeholder="Gender">
-          <a-select-option value="Laki - laki">Laki - laki</a-select-option>
-          <a-select-option value="Perempuan">Perempuan</a-select-option>
-        </a-select>
+        <a-input-number
+          placeholder="Angkatan"
+          :min="2015"
+          :max="2020"
+        ></a-input-number>
       </a-form-item>
 
       <a-form-item>
-        <a-select placeholder="Bawa laptop?">
-          <a-select-option value="Ya">Ya</a-select-option>
-          <a-select-option value="Tidak">Tidak</a-select-option>
-        </a-select>
+        <a-radio-group default-value="L" button-style="solid">
+          <a-radio-button value="L">Laki - laki</a-radio-button>
+          <a-radio-button value="P">Perempuan</a-radio-button>
+        </a-radio-group>
       </a-form-item>
 
       <a-form-item>
-        <a-input placeholder="Alamat surel"></a-input>
+        <a-radio-group default-value="Ya" button-style="solid">
+          <a-radio-button value="Ya">Bawa laptop</a-radio-button>
+          <a-radio-button value="Tidak">Tidak bawa laptop</a-radio-button>
+        </a-radio-group>
+      </a-form-item>
+
+      <a-form-item>
+        <a-input placeholder="Alamat surel (email)"></a-input>
       </a-form-item>
 
       <a-form-item>
