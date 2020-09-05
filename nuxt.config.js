@@ -29,12 +29,12 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['ant-design-vue/dist/antd.css'],
+  css: ['vuesax/dist/vuesax.css', 'boxicons/css/boxicons.min.css'],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: ['@/plugins/ant-design'],
+  plugins: ['@/plugins/vuesax'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
