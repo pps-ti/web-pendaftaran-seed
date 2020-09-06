@@ -8,28 +8,30 @@
         <vs-input v-model="npm" border label-placeholder="NPM"></vs-input>
       </vs-row>
       <vs-row>
-        <vs-input
-          v-model="angkatan"
-          border
-          label-placeholder="Angkatan"
-        ></vs-input>
+        <vs-select v-model="angkatan" label-placeholder="Angkatan">
+          <vs-option label="2020" value="2020">2020</vs-option>
+          <vs-option label="2019" value="2019">2019</vs-option>
+          <vs-option label="2018" value="2018">2018</vs-option>
+          <vs-option label="2017" value="2017">2017</vs-option>
+          <vs-option label="2016" value="2016">2016</vs-option>
+          <vs-option label="2015" value="2015">2015</vs-option>
+        </vs-select>
       </vs-row>
       <vs-row>
         <vs-radio v-model="gender" val="L">Laki - Laki</vs-radio>
         <vs-radio v-model="gender" val="P">Perempuan</vs-radio>
       </vs-row>
       <vs-row>
-        <vs-checkbox v-model="bawaLaptop">
-          <template #icon>
-            <i class="bx bx-check"></i>
-          </template>
-          Bawa Laptop
-        </vs-checkbox>
+        <vs-switch v-model="bawaLaptop">
+          <template #off> Tidak bawa laptop </template>
+          <template #on> Bawa laptop </template>
+        </vs-switch>
       </vs-row>
       <vs-row>
         <vs-input
           v-model="surel"
           border
+          type="email"
           label-placeholder="Alamat surel (email)"
         ></vs-input>
       </vs-row>
@@ -53,7 +55,7 @@ export default {
     return {
       nama: '',
       npm: undefined,
-      angkatan: undefined,
+      angkatan: '2020',
       gender: 'L',
       bawaLaptop: false,
       surel: '',
@@ -83,15 +85,23 @@ export default {
 }
 
 .vs-row {
-  margin: 30px 0;
+  margin: 40px 0;
 }
 
 .vs-input {
-  font-size: 1em;
+  font-size: 1.1em;
 }
 
 .vs-input-parent,
 .vs-input {
   width: 100%;
+}
+
+.vs-radio-content {
+  margin-right: 10px;
+}
+
+.vs-switch {
+  margin: 0 5px;
 }
 </style>
