@@ -2,13 +2,17 @@
   <div class="container grid">
     <form @submit.prevent="onSubmit">
       <vs-row>
-        <vs-input v-model="nama" placeholder="Nama"></vs-input>
+        <vs-input v-model="nama" border label-placeholder="Nama"></vs-input>
       </vs-row>
       <vs-row>
-        <vs-input v-model="npm" placeholder="NPM"></vs-input>
+        <vs-input v-model="npm" border label-placeholder="NPM"></vs-input>
       </vs-row>
       <vs-row>
-        <vs-input v-model="angkatan" placeholder="Angkatan"></vs-input>
+        <vs-input
+          v-model="angkatan"
+          border
+          label-placeholder="Angkatan"
+        ></vs-input>
       </vs-row>
       <vs-row>
         <vs-radio v-model="gender" val="L">Laki - Laki</vs-radio>
@@ -23,12 +27,17 @@
         </vs-checkbox>
       </vs-row>
       <vs-row>
-        <vs-input v-model="surel" placeholder="Alamat surel (email)"></vs-input>
+        <vs-input
+          v-model="surel"
+          border
+          label-placeholder="Alamat surel (email)"
+        ></vs-input>
       </vs-row>
       <vs-row>
         <vs-input
           v-model="alasanIkut"
-          placeholder="Alasan mengikuti acara"
+          border
+          label-placeholder="Alasan mengikuti acara"
         ></vs-input>
       </vs-row>
       <vs-row>
@@ -69,11 +78,20 @@ export default {
 
 <style>
 .container {
-  width: 400px;
+  width: 500px;
   margin: 0 auto;
 }
 
 .vs-row {
-  margin: 10px 0;
+  margin: 30px 0;
+}
+
+.vs-input {
+  font-size: 1em;
+}
+
+.vs-input-parent,
+.vs-input {
+  width: 100%;
 }
 </style>
