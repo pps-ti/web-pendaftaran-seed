@@ -50,7 +50,7 @@
           ></vs-input>
         </vs-row>
         <vs-row>
-          <vs-button>Kirim</vs-button>
+          <vs-button class="send-button">Kirim</vs-button>
         </vs-row>
       </form>
     </vs-dialog>
@@ -88,6 +88,10 @@ export default {
 </script>
 
 <style>
+.vs-input__label--placeholder {
+  font-size: 1em;
+}
+
 .container {
   max-width: 500px;
   width: 95%;
@@ -106,7 +110,7 @@ export default {
 
 #form {
   border-radius: 35px;
-  padding: 20px 10px;
+  padding: 20px 10px 0;
 }
 
 .vs-dialog {
@@ -115,7 +119,7 @@ export default {
 
 @media screen and (min-width: 768px) {
   .vs-dialog {
-    padding: 20px 30px;
+    padding: 20px 30px 10px;
   }
 }
 
@@ -152,5 +156,11 @@ h1 {
 
 .vs-switch {
   margin: 0 5px;
+}
+
+.send-button {
+  padding: 5px 30px;
+  font-size: 0.9em;
+  letter-spacing: 1.3px;
 }
 </style>
