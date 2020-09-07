@@ -1,6 +1,8 @@
 <template>
   <div class="container grid">
-    <div class="blur-underlay"></div>
+    <div class="blur-underlay">
+      <vue-particles color="#353535" :particle-size="4"></vue-particles>
+    </div>
     <vs-dialog v-model="dialogActive" prevent-close not-close>
       <template #header>
         <h1>Pendaftaran Event <strong>SEED</strong></h1>
@@ -98,8 +100,8 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  filter: blur(3px);
   z-index: -1;
+  overflow: hidden;
 }
 
 #form {
@@ -108,7 +110,13 @@ export default {
 }
 
 .vs-dialog {
-  padding: 20px 30px;
+  padding-top: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .vs-dialog {
+    padding: 20px 30px;
+  }
 }
 
 h1 {
@@ -139,7 +147,7 @@ h1 {
 }
 
 .vs-radio-content {
-  margin-right: 10px;
+  margin: 0 10px 10px 0;
 }
 
 .vs-switch {
