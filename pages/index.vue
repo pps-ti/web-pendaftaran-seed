@@ -1,7 +1,11 @@
 <template>
   <div class="container grid">
     <div class="blur-underlay">
-      <vue-particles color="#353535" :particle-size="4"></vue-particles>
+      <vue-particles
+        color="#353535"
+        :particle-size="4"
+        :particles-number="50"
+      ></vue-particles>
     </div>
     <vs-dialog v-model="dialogActive" prevent-close not-close>
       <template #header>
@@ -9,10 +13,10 @@
       </template>
       <form id="form" @submit.prevent="onSubmit">
         <vs-row>
-          <vs-input v-model="nama" border label-placeholder="Nama"></vs-input>
+          <vs-input v-model="npm" border label-placeholder="NPM"></vs-input>
         </vs-row>
         <vs-row>
-          <vs-input v-model="npm" border label-placeholder="NPM"></vs-input>
+          <vs-input v-model="nama" border label-placeholder="Nama"></vs-input>
         </vs-row>
         <vs-row>
           <vs-select v-model="angkatan" label-placeholder="Angkatan">
@@ -40,7 +44,14 @@
             border
             type="email"
             label-placeholder="Alamat surel (email)"
-          ></vs-input>
+          >
+            <template v-if="validEmail" #message-success>
+              Surel Valid
+            </template>
+            <template v-if="!validEmail && surel !== ''" #message-danger>
+              Surel Tidak Valid
+            </template>
+          </vs-input>
         </vs-row>
         <vs-row>
           <vs-input
@@ -70,6 +81,21 @@ export default {
       alasanIkut: '',
       dialogActive: true,
     };
+  },
+  computed: {
+    validEmail() {
+      return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.surel);
+    },
+  },
+  watch: {
+    npm() {
+      if (this.npm) {
+        const npmStr = String(this.npm).substring(0, 2);
+        this.angkatan = `20${npmStr}`;
+      } else {
+        this.angkatan = `2020`;
+      }
+    },
   },
   methods: {
     onSubmit() {
@@ -151,7 +177,7 @@ h1 {
 }
 
 .vs-radio-content {
-  margin: 0 10px 10px 0;
+  margin: 0 10px 0 0;
 }
 
 .vs-switch {
