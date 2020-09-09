@@ -1,16 +1,39 @@
 <template>
-  <div class="container">
-    <vs-button>Hey tayo</vs-button>
-  </div>
+  <section class="container">
+    <div>
+      <app-logo/>
+      <h1 class="title">
+        testbro
+      </h1>
+      <h2 class="subtitle">
+        Nuxt.js project
+      </h2>
+      <div class="links">
+        <a
+          href="https://nuxtjs.org/"
+          target="_blank"
+          class="button--green">Documentation</a>
+        <a
+          href="https://github.com/nuxt/nuxt.js"
+          target="_blank"
+          class="button--grey">GitHub</a>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
-export default {};
+import AppLogo from '~/components/AppLogo.vue'
+
+export default {
+  components: {
+    AppLogo
+  }
+}
 </script>
 
 <style>
 .container {
-  margin: 0 auto;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -19,53 +42,24 @@ export default {};
 }
 
 .title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
   display: block;
   font-weight: 300;
-  font-size: 55px;
+  font-size: 100px;
   color: #35495e;
   letter-spacing: 1px;
-  text-transform: capitalize;
-  margin: 25px 0;
 }
 
 .subtitle {
   font-weight: 300;
-  font-size: 1.1rem;
+  font-size: 42px;
   color: #526488;
-  word-spacing: 2px;
+  word-spacing: 5px;
   padding-bottom: 15px;
-  max-width: 600px;
-}
-
-.subtitle a {
-  font-weight: 500;
-  color: inherit;
 }
 
 .links {
   padding-top: 15px;
-  margin-bottom: 20px;
-}
-
-.content-logos {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 500px;
-}
-
-.plus {
-  font-size: 2.5rem;
-  margin: 15px;
-  color: #35495e;
-}
-
-.h3 {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-weight: 400;
-  margin: 10px;
 }
 </style>
+
