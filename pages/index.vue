@@ -1,22 +1,29 @@
 <template>
   <div class="container grid">
     <div class="blur-underlay">
-      <vue-particles
+      <!-- <vue-particles
         color="#353535"
         :particle-size="4"
         :particles-number="50"
-      ></vue-particles>
+      ></vue-particles> -->
     </div>
-    <vs-dialog v-model="dialogActive" prevent-close not-close>
+    <vs-dialog
+      v-model="dialogActive"
+      :loading="submitting"
+      prevent-close
+      not-close
+    >
       <template #header>
         <h1>Pendaftaran Event <strong>SEED</strong></h1>
       </template>
       <form id="form" @submit.prevent="onSubmit">
         <vs-row>
-          <vs-input v-model="npm" border label-placeholder="NPM"></vs-input>
+          <vs-input v-model="npm" border label-placeholder="NPM">
+            <template v-if="alert.npm" #message-danger> Required </template>
+          </vs-input>
         </vs-row>
         <vs-row>
-          <vs-input v-model="nama" border label-placeholder="Nama"></vs-input>
+          <vs-input v-model="nama" border label-placeholder="Nama"> </vs-input>
         </vs-row>
         <vs-row>
           <vs-select v-model="angkatan" label-placeholder="Angkatan">
@@ -34,8 +41,7 @@
         </vs-row>
         <vs-row>
           <vs-switch v-model="bawaLaptop">
-            <template #off> Tidak bawa laptop </template>
-            <template #on> Bawa laptop </template>
+            <template> Bawa laptop </template>
           </vs-switch>
         </vs-row>
         <vs-row>
@@ -61,7 +67,7 @@
           ></vs-input>
         </vs-row>
         <vs-row>
-          <vs-button class="send-button">Kirim</vs-button>
+          <vs-button block size="xl" class="send-button">Kirim</vs-button>
         </vs-row>
       </form>
     </vs-dialog>
@@ -80,6 +86,14 @@ export default {
       surel: '',
       alasanIkut: '',
       dialogActive: true,
+      dataTidakValid: false,
+      submitting: false,
+      alert: {
+        nama: false,
+        npm: false,
+        surel: false,
+        alasanIkut: false,
+      },
     };
   },
   computed: {
@@ -89,25 +103,78 @@ export default {
   },
   watch: {
     npm() {
-      if (this.npm) {
+      if (this.npm !== undefined) {
         const npmStr = String(this.npm).substring(0, 2);
-        this.angkatan = `20${npmStr}`;
+        const isNpmValid = Number(npmStr) >= 15 && Number(npmStr) <= 20;
+        this.angkatan = isNpmValid ? `20${npmStr}` : `2020`;
       } else {
         this.angkatan = `2020`;
       }
     },
   },
   methods: {
-    onSubmit() {
-      console.log({
-        nama: this.nama,
-        npm: this.npm,
-        angkatan: this.angkatan,
-        gender: this.gender,
-        bawaLaptop: this.bawaLaptop,
-        surel: this.surel,
-        alasanIkut: this.alasanIkut,
+    openNotification(duration) {
+      // eslint-disable-next-line no-unused-vars
+      const noti = this.$vs.notification({
+        color: 'danger',
+        duration: '20s',
+        position: 'bottom-right',
+        title: 'Terdapat data yang tidak valid',
+        text: 'Harap periksa kembali form Anda',
+        classNotification: 'notif',
       });
+    },
+
+    openLoading() {
+      const loading = this.$vs.loading({
+        type: 'circles',
+        background: 'primary',
+        color: '#fff',
+        opacity: 1,
+        scale: 1.2,
+        text: 'Sedang mengirim...',
+      });
+
+      setTimeout(() => {
+        loading.close();
+      }, 4000);
+    },
+
+    onSubmit() {
+      const {
+        npm,
+        nama,
+        angkatan,
+        gender,
+        bawaLaptop,
+        surel,
+        alasanIkut,
+      } = this.$data;
+
+      if (
+        npm &&
+        nama &&
+        angkatan &&
+        gender &&
+        bawaLaptop &&
+        surel &&
+        alasanIkut
+      ) {
+        // this.submitting = true;
+        this.openLoading();
+        console.log({
+          nama: this.nama,
+          npm: this.npm,
+          angkatan: this.angkatan,
+          gender: this.gender,
+          bawaLaptop: this.bawaLaptop,
+          surel: this.surel,
+          alasanIkut: this.alasanIkut,
+        });
+      } else {
+        this.dataTidakValid = true;
+        this.openNotification();
+      }
     },
   },
 };
@@ -132,6 +199,9 @@ export default {
   height: 100%;
   z-index: -1;
   overflow: hidden;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 30s ease infinite;
 }
 
 #form {
@@ -184,9 +254,19 @@ h1 {
   margin: 0 5px;
 }
 
-.send-button {
-  padding: 5px 30px;
-  font-size: 0.9em;
-  letter-spacing: 1.3px;
+.notif {
+  font-size: 3em;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 </style>
