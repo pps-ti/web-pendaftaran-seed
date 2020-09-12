@@ -2,47 +2,56 @@
   <div class="container grid">
     <div class="blur-underlay">
       <!-- <vue-particles
-        color="#353535"
+        color="#fff"
         :particle-size="4"
         :particles-number="50"
       ></vue-particles> -->
     </div>
-    <vs-dialog
-      v-model="dialogActive"
-      :loading="submitting"
-      prevent-close
-      not-close
-    >
+    <vs-dialog v-model="dialogActive" prevent-close not-close>
       <template #header>
         <h1>Pendaftaran Event <strong>SEED</strong></h1>
       </template>
       <form id="form" @submit.prevent="onSubmit">
         <vs-row>
           <vs-input v-model="npm" border label-placeholder="NPM">
-            <template v-if="alert.npm" #message-danger> Required </template>
+            <template
+              v-if="$v.npm.$error || (!$v.npm.required && npm !== undefined)"
+              #message-danger
+            >
+              Harus diisi
+            </template>
           </vs-input>
         </vs-row>
         <vs-row>
-          <vs-input v-model="nama" border label-placeholder="Nama"> </vs-input>
+          <vs-input v-model="nama" border label-placeholder="Nama">
+            <template
+              v-if="$v.nama.$error || (!$v.nama.required && nama !== undefined)"
+              #message-danger
+            >
+              Harus diisi
+            </template>
+          </vs-input>
         </vs-row>
         <vs-row>
           <vs-select v-model="angkatan" label-placeholder="Angkatan">
+            <template
+              v-if="$v.angkatan.$error || !$v.angkatan.between"
+              #message-danger
+            >
+              Angkatan tidak valid
+            </template>
             <vs-option label="2020" value="2020">2020</vs-option>
             <vs-option label="2019" value="2019">2019</vs-option>
             <vs-option label="2018" value="2018">2018</vs-option>
             <vs-option label="2017" value="2017">2017</vs-option>
             <vs-option label="2016" value="2016">2016</vs-option>
             <vs-option label="2015" value="2015">2015</vs-option>
+            <vs-option label="2014" value="2014">2014</vs-option>
           </vs-select>
         </vs-row>
         <vs-row>
           <vs-radio v-model="gender" val="L">Laki - Laki</vs-radio>
           <vs-radio v-model="gender" val="P">Perempuan</vs-radio>
-        </vs-row>
-        <vs-row>
-          <vs-switch v-model="bawaLaptop">
-            <template> Bawa laptop </template>
-          </vs-switch>
         </vs-row>
         <vs-row>
           <vs-input
@@ -54,8 +63,17 @@
             <template v-if="validEmail" #message-success>
               Surel Valid
             </template>
-            <template v-if="!validEmail && surel !== ''" #message-danger>
-              Surel Tidak Valid
+            <template #message-danger>
+              <span v-if="!validEmail && surel !== undefined && surel !== ''"
+                >Surel tidak valid</span
+              >
+              <span
+                v-if="
+                  $v.surel.$error || (!$v.surel.required && surel !== undefined)
+                "
+              >
+                Harus diisi
+              </span>
             </template>
           </vs-input>
         </vs-row>
@@ -64,7 +82,17 @@
             v-model="alasanIkut"
             border
             label-placeholder="Alasan mengikuti acara"
-          ></vs-input>
+          >
+            <template
+              v-if="
+                $v.alasanIkut.$error ||
+                (!$v.alasanIkut.required && alasanIkut !== undefined)
+              "
+              #message-danger
+            >
+              Harus diisi
+            </template>
+          </vs-input>
         </vs-row>
         <vs-row>
           <vs-button block size="xl" class="send-button">Kirim</vs-button>
@@ -75,26 +103,44 @@
 </template>
 
 <script>
+import { required, minLength, between } from 'vuelidate/lib/validators';
+import VuesaxMixins from '~/mixins/vuesax.js';
+
 export default {
+  mixins: [VuesaxMixins],
   data() {
     return {
-      nama: '',
+      nama: undefined,
       npm: undefined,
-      angkatan: '2020',
+      angkatan: 2020,
       gender: 'L',
-      bawaLaptop: false,
-      surel: '',
-      alasanIkut: '',
+      surel: undefined,
+      alasanIkut: undefined,
       dialogActive: true,
-      dataTidakValid: false,
-      submitting: false,
-      alert: {
-        nama: false,
-        npm: false,
-        surel: false,
-        alasanIkut: false,
-      },
     };
+  },
+  validations: {
+    npm: {
+      required,
+      minLength: minLength(4),
+    },
+    nama: {
+      required,
+    },
+    angkatan: {
+      required,
+      between: between(2014, 2020),
+    },
+    gender: {
+      required,
+      valid: (value) => value === 'L' || value === 'P',
+    },
+    surel: {
+      required,
+    },
+    alasanIkut: {
+      required,
+    },
   },
   computed: {
     validEmail() {
@@ -113,54 +159,12 @@ export default {
     },
   },
   methods: {
-    openNotification(duration) {
-      // eslint-disable-next-line no-unused-vars
-      const noti = this.$vs.notification({
-        color: 'danger',
-        duration: '20s',
-        position: 'bottom-right',
-        title: 'Terdapat data yang tidak valid',
-        text: 'Harap periksa kembali form Anda',
-        classNotification: 'notif',
-      });
-    },
-
-    openLoading() {
-      const loading = this.$vs.loading({
-        type: 'circles',
-        background: 'primary',
-        color: '#fff',
-        opacity: 1,
-        scale: 1.2,
-        text: 'Sedang mengirim...',
-      });
-
-      setTimeout(() => {
-        loading.close();
-      }, 4000);
-    },
-
     onSubmit() {
-      const {
-        npm,
-        nama,
-        angkatan,
-        gender,
-        bawaLaptop,
-        surel,
-        alasanIkut,
-      } = this.$data;
-
-      if (
-        npm &&
-        nama &&
-        angkatan &&
-        gender &&
-        bawaLaptop &&
-        surel &&
-        alasanIkut
-      ) {
+      this.$v.$touch();
+      if (this.$v.$invalid) {
         // this.submitting = true;
+        this.openNotification();
+      } else {
         this.openLoading();
         console.log({
           nama: this.nama,
@@ -171,9 +175,6 @@ export default {
           surel: this.surel,
           alasanIkut: this.alasanIkut,
         });
-      } else {
-        this.dataTidakValid = true;
-        this.openNotification();
       }
     },
   },
@@ -183,6 +184,28 @@ export default {
 <style>
 .vs-input__label--placeholder {
   font-size: 1em;
+}
+
+.vs-notification-parent {
+  padding-bottom: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .vs-notification h4 {
+    font-size: 1.1rem;
+  }
+
+  .vs-notification p {
+    font-size: 0.9rem;
+  }
+}
+
+.vs-notification h4 {
+  font-size: 1rem;
+}
+
+.vs-notification p {
+  font-size: 0.8rem;
 }
 
 .container {
@@ -198,10 +221,8 @@ export default {
   width: 100%;
   height: 100%;
   z-index: -1;
+  background-color: #353535;
   overflow: hidden;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradient 30s ease infinite;
 }
 
 #form {

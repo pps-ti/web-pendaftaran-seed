@@ -41,7 +41,11 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: ['@/plugins/vuesax', '@/plugins/vue-particles'],
+  plugins: [
+    '@/plugins/vuesax',
+    '@/plugins/vue-particles',
+    '@/plugins/vuelidate',
+  ],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
