@@ -1,17 +1,7 @@
 <template>
   <div class="container grid">
-    <div class="blur-underlay">
-      <!-- <vue-particles
-        color="#fff"
-        :particle-size="4"
-        :particles-number="50"
-      ></vue-particles> -->
-    </div>
-    <vs-dialog v-model="dialogActive" prevent-close not-close>
-      <template #header>
-        <h1>Pendaftaran Event <strong>SEED</strong></h1>
-      </template>
-      <form id="form" @submit.prevent="onSubmit">
+    <form id="form" @submit.prevent="onSubmit">
+      <div v-if="formStep === 1" class="form-page">
         <vs-row>
           <vs-input v-model="npm" border label-placeholder="NPM">
             <template
@@ -49,9 +39,12 @@
             <vs-option label="2014" value="2014">2014</vs-option>
           </vs-select>
         </vs-row>
+        <label for="gender">Gender</label>
         <vs-row>
-          <vs-radio v-model="gender" val="L">Laki - Laki</vs-radio>
-          <vs-radio v-model="gender" val="P">Perempuan</vs-radio>
+          <vs-radio v-model="gender" name="gender" val="L"
+            >Laki - Laki</vs-radio
+          >
+          <vs-radio v-model="gender" name="gender" val="P">Perempuan</vs-radio>
         </vs-row>
         <vs-row>
           <vs-input
@@ -94,11 +87,70 @@
             </template>
           </vs-input>
         </vs-row>
+      </div>
+      <div v-if="formStep === 2">
+        <label for="survey1">
+          1. Apakah Anda sudah familiar dengan HTML dan CSS?
+        </label>
+        <vs-row>
+          <vs-radio v-model="survey1" name="survey1" val="Sudah">
+            Sudah
+          </vs-radio>
+          <vs-radio v-model="survey1" name="survey1" val="Belum">
+            Belum
+          </vs-radio>
+        </vs-row>
+        <label for="survey2">
+          2. Apakah Anda sudah pernah membuat website dengan database?
+        </label>
+        <vs-row>
+          <vs-radio v-model="survey2" name="survey2" val="Sudah">
+            Sudah
+          </vs-radio>
+          <vs-radio v-model="survey2" name="survey2" val="Belum">
+            Belum
+          </vs-radio>
+        </vs-row>
+        <label for="survey3">
+          3. Apakah anda sudah pernah menggunakan framework flask?
+        </label>
+        <vs-row>
+          <vs-radio v-model="survey3" name="survey3" val="Sudah">
+            Sudah
+          </vs-radio>
+          <vs-radio v-model="survey3" name="survey3" val="Belum">
+            Belum
+          </vs-radio>
+        </vs-row>
+        <label for="survey4">
+          4. Apakah anda sudah pernah coba melakukan query dengan SQL database?
+        </label>
+        <vs-row>
+          <vs-radio v-model="survey4" name="survey4" val="Sudah">
+            Sudah
+          </vs-radio>
+          <vs-radio v-model="survey4" name="survey4" val="Belum">
+            Belum
+          </vs-radio>
+        </vs-row>
+        <label for="survey5">
+          5. Apakah anda sudah pernah mencoba NoSQL database dengan MongoDB?
+        </label>
+        <vs-row>
+          <vs-radio v-model="survey5" name="survey5" val="Sudah">
+            Sudah
+          </vs-radio>
+          <vs-radio v-model="survey5" name="survey5" val="Belum">
+            Belum
+          </vs-radio>
+        </vs-row>
         <vs-row>
           <vs-button block size="xl" class="send-button">Kirim</vs-button>
         </vs-row>
-      </form>
-    </vs-dialog>
+      </div>
+    </form>
+
+    <vs-pagination v-model="formStep" progress not-margin :length="2" />
   </div>
 </template>
 
@@ -116,7 +168,12 @@ export default {
       gender: 'L',
       surel: undefined,
       alasanIkut: undefined,
-      dialogActive: true,
+      formStep: 1,
+      survey1: 'Belum',
+      survey2: 'Belum',
+      survey3: 'Belum',
+      survey4: 'Belum',
+      survey5: 'Belum',
     };
   },
   validations: {
@@ -250,10 +307,6 @@ h1 {
   margin: 40px 0;
 }
 
-.vs-row:first-of-type {
-  margin-top: 0;
-}
-
 .vs-row:last-of-type {
   margin: 20px 0;
 }
@@ -277,6 +330,10 @@ h1 {
 
 .notif {
   font-size: 3em;
+}
+
+.vs-pagination {
+  transition: all 0.2s;
 }
 
 @keyframes gradient {
