@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div class="particles-background">
+      <!-- <vue-particles
+        color="#000"
+        :particle-size="50"
+        :particles-number="6"
+      ></vue-particles> -->
+    </div>
     <Nuxt />
   </div>
 </template>

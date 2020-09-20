@@ -1,9 +1,11 @@
 <template>
   <div class="container grid">
     <form id="form" @submit.prevent="onSubmit">
-      <div v-if="formStep === 1" class="form-page">
+      <h1 class="form-title">Pendaftaran <strong>SEED</strong></h1>
+      <hr class="form-hr" />
+      <div v-if="formStep == 1" class="form-page form-page--1">
         <vs-row>
-          <vs-input v-model="npm" border label-placeholder="NPM">
+          <vs-input v-model="npm" border placeholder="NPM">
             <template
               v-if="$v.npm.$error || (!$v.npm.required && npm !== undefined)"
               #message-danger
@@ -13,7 +15,7 @@
           </vs-input>
         </vs-row>
         <vs-row>
-          <vs-input v-model="nama" border label-placeholder="Nama">
+          <vs-input v-model="nama" border placeholder="Nama">
             <template
               v-if="$v.nama.$error || (!$v.nama.required && nama !== undefined)"
               #message-danger
@@ -23,7 +25,7 @@
           </vs-input>
         </vs-row>
         <vs-row>
-          <vs-select v-model="angkatan" label-placeholder="Angkatan">
+          <vs-select v-model="angkatan" placeholder="Angkatan">
             <template
               v-if="$v.angkatan.$error || !$v.angkatan.between"
               #message-danger
@@ -39,8 +41,8 @@
             <vs-option label="2014" value="2014">2014</vs-option>
           </vs-select>
         </vs-row>
-        <label for="gender">Gender</label>
-        <vs-row>
+        <vs-row class="gender-row">
+          <label for="gender" class="gender-label">Gender: </label>
           <vs-radio v-model="gender" name="gender" val="L"
             >Laki - Laki</vs-radio
           >
@@ -51,7 +53,7 @@
             v-model="surel"
             border
             type="email"
-            label-placeholder="Alamat surel (email)"
+            placeholder="Alamat surel (email)"
           >
             <template v-if="validEmail" #message-success>
               Surel Valid
@@ -74,7 +76,7 @@
           <vs-input
             v-model="alasanIkut"
             border
-            label-placeholder="Alasan mengikuti acara"
+            placeholder="Alasan mengikuti acara"
           >
             <template
               v-if="
@@ -87,12 +89,19 @@
             </template>
           </vs-input>
         </vs-row>
+        <vs-button flat type="button" @click="formStep = 2">
+          Selanjutnya
+          <template #animate>
+            <i class="bx bx-right-arrow-alt"></i>
+          </template>
+        </vs-button>
       </div>
-      <div v-if="formStep === 2">
-        <label for="survey1">
-          1. Apakah Anda sudah familiar dengan HTML dan CSS?
-        </label>
-        <vs-row>
+
+      <div v-if="formStep == 2" class="form-page form-page--2">
+        <vs-row class="survey-question">
+          <label for="survey1">
+            1. Apakah Anda sudah familiar dengan HTML dan CSS?
+          </label>
           <vs-radio v-model="survey1" name="survey1" val="Sudah">
             Sudah
           </vs-radio>
@@ -100,10 +109,10 @@
             Belum
           </vs-radio>
         </vs-row>
-        <label for="survey2">
-          2. Apakah Anda sudah pernah membuat website dengan database?
-        </label>
-        <vs-row>
+        <vs-row class="survey-question">
+          <label for="survey2">
+            2. Apakah Anda sudah pernah membuat website dengan database?
+          </label>
           <vs-radio v-model="survey2" name="survey2" val="Sudah">
             Sudah
           </vs-radio>
@@ -111,10 +120,10 @@
             Belum
           </vs-radio>
         </vs-row>
-        <label for="survey3">
-          3. Apakah anda sudah pernah menggunakan framework flask?
-        </label>
-        <vs-row>
+        <vs-row class="survey-question">
+          <label for="survey3">
+            3. Apakah anda sudah pernah menggunakan framework flask?
+          </label>
           <vs-radio v-model="survey3" name="survey3" val="Sudah">
             Sudah
           </vs-radio>
@@ -122,10 +131,11 @@
             Belum
           </vs-radio>
         </vs-row>
-        <label for="survey4">
-          4. Apakah anda sudah pernah coba melakukan query dengan SQL database?
-        </label>
-        <vs-row>
+        <vs-row class="survey-question">
+          <label for="survey4">
+            4. Apakah anda sudah pernah coba melakukan query dengan SQL
+            database?
+          </label>
           <vs-radio v-model="survey4" name="survey4" val="Sudah">
             Sudah
           </vs-radio>
@@ -133,10 +143,10 @@
             Belum
           </vs-radio>
         </vs-row>
-        <label for="survey5">
-          5. Apakah anda sudah pernah mencoba NoSQL database dengan MongoDB?
-        </label>
-        <vs-row>
+        <vs-row class="survey-question">
+          <label for="survey5">
+            5. Apakah anda sudah pernah mencoba NoSQL database dengan MongoDB?
+          </label>
           <vs-radio v-model="survey5" name="survey5" val="Sudah">
             Sudah
           </vs-radio>
@@ -145,12 +155,21 @@
           </vs-radio>
         </vs-row>
         <vs-row>
-          <vs-button block size="xl" class="send-button">Kirim</vs-button>
+          <vs-button
+            flat
+            type="button"
+            class="back-button"
+            @click="formStep = 1"
+          >
+            Kembali
+            <template #animate>
+              <i class="bx bx-left-arrow-alt"></i>
+            </template>
+          </vs-button>
+          <vs-button class="send-button">Kirim</vs-button>
         </vs-row>
       </div>
     </form>
-
-    <vs-pagination v-model="formStep" progress not-margin :length="2" />
   </div>
 </template>
 
@@ -237,114 +256,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.vs-input__label--placeholder {
-  font-size: 1em;
-}
-
-.vs-notification-parent {
-  padding-bottom: 40px;
-}
-
-@media screen and (min-width: 768px) {
-  .vs-notification h4 {
-    font-size: 1.1rem;
-  }
-
-  .vs-notification p {
-    font-size: 0.9rem;
-  }
-}
-
-.vs-notification h4 {
-  font-size: 1rem;
-}
-
-.vs-notification p {
-  font-size: 0.8rem;
-}
-
-.container {
-  max-width: 500px;
-  width: 95%;
-  margin: 20px auto;
-}
-
-.blur-underlay {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-color: #353535;
-  overflow: hidden;
-}
-
-#form {
-  border-radius: 35px;
-  padding: 20px 10px 0;
-}
-
-.vs-dialog {
-  padding-top: 20px;
-}
-
-@media screen and (min-width: 768px) {
-  .vs-dialog {
-    padding: 20px 30px 10px;
-  }
-}
-
-h1 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  text-align: center;
-}
-
-.vs-row {
-  margin: 40px 0;
-}
-
-.vs-row:last-of-type {
-  margin: 20px 0;
-}
-
-.vs-input {
-  font-size: 1.1em;
-}
-
-.vs-input-parent,
-.vs-input {
-  width: 100%;
-}
-
-.vs-radio-content {
-  margin: 0 10px 0 0;
-}
-
-.vs-switch {
-  margin: 0 5px;
-}
-
-.notif {
-  font-size: 3em;
-}
-
-.vs-pagination {
-  transition: all 0.2s;
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-</style>

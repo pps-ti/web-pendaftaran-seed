@@ -36,7 +36,11 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['vuesax/dist/vuesax.css', 'boxicons/css/boxicons.min.css'],
+  css: [
+    'vuesax/dist/vuesax.css',
+    'boxicons/css/boxicons.min.css',
+    '~/assets/style.css',
+  ],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
