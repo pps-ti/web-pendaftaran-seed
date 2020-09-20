@@ -1,0 +1,167 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.particles-background {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.form-title {
+  margin-bottom: 20px;
+}
+
+.form-hr {
+  border-top: 0.5px solid lightgrey;
+  margin-bottom: 30px;
+}
+
+.survey-question {
+  margin: 0 10px 40px;
+}
+
+.vs-radio-content {
+  margin: 0 10px 0 0;
+}
+
+.survey-question .vs-radio-content {
+  margin: 10px 10px 0 0;
+}
+
+.page-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.bx {
+  font-size: 26px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: 0.5s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+.vs-input__label--placeholder {
+  font-size: 1.1em;
+}
+
+.vs-notification-parent {
+  padding-bottom: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .vs-notification h4 {
+    font-size: 1.1rem;
+  }
+
+  .vs-notification p {
+    font-size: 0.9rem;
+  }
+}
+
+.vs-notification h4 {
+  font-size: 1rem;
+}
+
+.vs-notification p {
+  font-size: 0.8rem;
+}
+
+.gender-label {
+  margin-right: 10px;
+}
+
+.gender-row {
+  padding-left: 7px;
+}
+
+.container {
+  max-width: 480px;
+  width: 95%;
+  margin: 40px auto;
+}
+
+.blur-underlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: #353535;
+  overflow: hidden;
+}
+
+#form {
+  background-color: white;
+  position: relative;
+  border: 1px solid lightgrey;
+  border-radius: 8px;
+  padding: 35px 30px;
+  transition: 0.5s;
+}
+
+.vs-dialog {
+  padding-top: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .vs-dialog {
+    padding: 20px 30px 10px;
+  }
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  text-align: center;
+}
+
+.form-page--1 .vs-row {
+  margin: 0 0 35px;
+}
+
+.form-page--1 .vs-row:last-of-type {
+  margin: 20px 0;
+}
+
+.vs-input {
+  font-size: 1em;
+}
+
+.vs-input-parent,
+.vs-input {
+  width: 100%;
+}
+
+.vs-switch {
+  margin: 0 5px;
+}
+
+.notif {
+  font-size: 3em;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
