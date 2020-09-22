@@ -1,2 +1,2 @@
 [build]
-  functions = "cloud-function"
+  functions = "lambdas"
