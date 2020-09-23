@@ -5,7 +5,7 @@
       <hr class="form-hr" />
       <div v-if="formStep == 1" class="form-page form-page--1">
         <vs-row>
-          <vs-input v-model="npm" border placeholder="NPM">
+          <vs-input v-model="npm" placeholder="NPM">
             <template
               v-if="$v.npm.$error || (!$v.npm.required && npm !== undefined)"
               #message-danger
@@ -15,7 +15,7 @@
           </vs-input>
         </vs-row>
         <vs-row>
-          <vs-input v-model="nama" border placeholder="Nama">
+          <vs-input v-model="nama" placeholder="Nama">
             <template
               v-if="$v.nama.$error || (!$v.nama.required && nama !== undefined)"
               #message-danger
@@ -41,8 +41,8 @@
             <vs-option label="2014" value="2014">2014</vs-option>
           </vs-select>
         </vs-row>
+        <label for="gender" class="gender-label">Gender: </label>
         <vs-row class="gender-row">
-          <label for="gender" class="gender-label">Gender: </label>
           <vs-radio v-model="gender" name="gender" val="L"
             >Laki - Laki</vs-radio
           >
@@ -51,7 +51,6 @@
         <vs-row>
           <vs-input
             v-model="surel"
-            border
             type="email"
             placeholder="Alamat surel (email)"
           >
@@ -73,11 +72,7 @@
           </vs-input>
         </vs-row>
         <vs-row>
-          <vs-input
-            v-model="alasanIkut"
-            border
-            placeholder="Alasan mengikuti acara"
-          >
+          <vs-input v-model="alasanIkut" placeholder="Alasan mengikuti acara">
             <template
               v-if="
                 $v.alasanIkut.$error ||
@@ -89,12 +84,16 @@
             </template>
           </vs-input>
         </vs-row>
-        <vs-button flat type="button" @click="formStep = 2">
-          Selanjutnya
-          <template #animate>
+        <vs-row justify="flex-end">
+          <vs-button
+            flat
+            type="button"
+            class="form-nav-button"
+            @click="formStep = 2"
+          >
             <i class="bx bx-right-arrow-alt"></i>
-          </template>
-        </vs-button>
+          </vs-button>
+        </vs-row>
       </div>
 
       <div v-if="formStep == 2" class="form-page form-page--2">
@@ -154,19 +153,16 @@
             Belum
           </vs-radio>
         </vs-row>
-        <vs-row>
+        <vs-row justify="space-between">
           <vs-button
             flat
             type="button"
-            class="back-button"
+            class="form-nav-button"
             @click="formStep = 1"
           >
-            Kembali
-            <template #animate>
-              <i class="bx bx-left-arrow-alt"></i>
-            </template>
+            <i class="bx bx-left-arrow-alt"></i>
           </vs-button>
-          <vs-button class="send-button">Kirim</vs-button>
+          <vs-button size="large" class="send-button">Kirim</vs-button>
         </vs-row>
       </div>
     </form>
