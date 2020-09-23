@@ -4,6 +4,24 @@ body {
   height: 100%;
 }
 
+.send-button {
+  padding: 0 15px;
+}
+
+@media screen and (max-width: 325px) {
+  h1 {
+    font-size: 1.8em;
+  }
+}
+
+.form-nav-button {
+  padding: 0 20px;
+}
+
+.form-nav-button .vs-button__content {
+  padding: 5px 12px;
+}
+
 .particles-background {
   position: absolute;
   height: 100%;
@@ -18,7 +36,8 @@ body {
 }
 
 .form-hr {
-  border-top: 0.5px solid lightgrey;
+  border: none;
+  border-bottom: 1px solid #aaa;
   margin-bottom: 30px;
 }
 
@@ -54,7 +73,7 @@ body {
 }
 
 .vs-input__label--placeholder {
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 
 .vs-notification-parent {
@@ -80,10 +99,11 @@ body {
 }
 
 .gender-label {
-  margin-right: 10px;
+  margin: 0 0 10px 7px;
 }
 
-.gender-row {
+.form-page--1 .vs-row.gender-row {
+  margin-top: 10px;
   padding-left: 7px;
 }
 
@@ -91,6 +111,7 @@ body {
   max-width: 480px;
   width: 95%;
   margin: 40px auto;
+  box-sizing: border-box;
 }
 
 .blur-underlay {
@@ -107,10 +128,16 @@ body {
 #form {
   background-color: white;
   position: relative;
-  border: 1px solid lightgrey;
   border-radius: 8px;
-  padding: 35px 30px;
+  padding: 10px;
   transition: 0.5s;
+}
+
+@media screen and (min-width: 426px) {
+  #form {
+    border: 1px solid lightgrey;
+    padding: 35px 30px;
+  }
 }
 
 .vs-dialog {
@@ -130,7 +157,7 @@ h1 {
 }
 
 .form-page--1 .vs-row {
-  margin: 0 0 35px;
+  margin: 0 0 30px;
 }
 
 .form-page--1 .vs-row:last-of-type {
@@ -138,6 +165,11 @@ h1 {
 }
 
 .vs-input {
+  padding: 10px 5px;
+  font-size: 1em;
+}
+
+.vs-input__label {
   font-size: 1em;
 }
 
