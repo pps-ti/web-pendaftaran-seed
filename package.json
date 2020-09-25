@@ -15,7 +15,7 @@
     "lambda:serve": "netlify-lambda serve functions"
   },
   "lint-staged": {
-    "*.{js,vue}": "eslint",
+    "*/[!lambdas]**/*.{js,vue}": "eslint",
     "*.{css,vue}": "stylelint"
   },
   "husky": {
