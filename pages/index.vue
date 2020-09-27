@@ -224,7 +224,7 @@ export default {
         try {
           const unique = Boolean(
             await this.$axios.$get(
-              `/.netlify/functions/check-data-exists?type=Absensi&npm=${value}`
+              `https://pendaftaran-seed.netlify.app/.netlify/functions/check-data-exists?type=Absensi&npm=${value}`
             )
           );
 
@@ -301,7 +301,7 @@ export default {
 
         try {
           await this.$axios.$post(
-            '/.netlify/functions/post-data?type=Absensi',
+            'https://pendaftaran-seed.netlify.app/.netlify/functions/post-data?type=Absensi',
             {
               npm: this.npm,
               nama: this.nama,
@@ -317,9 +317,12 @@ export default {
             }
           );
 
-          await this.$axios.$post('/.netlify/functions/send-mail', {
-            recipient: this.surel,
-          });
+          await this.$axios.$post(
+            'https://pendaftaran-seed.netlify.app/.netlify/functions/send-mail',
+            {
+              recipient: this.surel,
+            }
+          );
 
           loading.close();
           this.formStep = 3;
