@@ -3,7 +3,7 @@ export default {
    ** Nuxt rendering mode
    ** See https://nuxtjs.org/api/configuration-mode
    */
-  mode: 'spa',
+  mode: 'universal',
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
@@ -47,7 +47,7 @@ export default {
    */
   plugins: [
     '@/plugins/vuesax',
-    '@/plugins/vue-particles',
+    { src: '@/plugins/vue-particles', mode: 'client' },
     '@/plugins/vuelidate',
   ],
   /*

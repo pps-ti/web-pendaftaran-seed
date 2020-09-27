@@ -18,6 +18,10 @@ body {
   padding: 0 20px;
 }
 
+.form-feedback .vs-row {
+  padding-top: 6px;
+}
+
 .form-nav-button .vs-button__content {
   padding: 5px 12px;
 }
@@ -74,6 +78,14 @@ body {
 
 .vs-input__label--placeholder {
   font-size: 1.2em;
+}
+
+.radio-nilai {
+  margin: 5px 0;
+}
+
+.radio-nilai:first-of-type {
+  margin-left: 5px;
 }
 
 .vs-notification-parent {
