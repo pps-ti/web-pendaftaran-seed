@@ -23,8 +23,9 @@ exports.handler = (event, context, callback) => {
     {
       from: process.env.MAIL_ACCOUNT,
       to: mailRecipient,
-      subject: 'Nodemailer test',
-      text: 'Selamat! Nodemailer anda berhasil :D',
+      subject: 'Anda telah mendaftar workshop SEED 2',
+      text:
+        'Terimakasih, Anda telah mendaftar di workshop SEED yang akan di adakan pada bulan Oktober 2020. Untuk saat ini, Anda masih berada di ruang tunggu dan akan mendapatkan email lanjutan jika sudah mendapatkan tempat di workshop tersebut.',
     },
     function (error, info) {
       if (error) {

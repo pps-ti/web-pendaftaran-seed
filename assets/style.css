@@ -165,12 +165,28 @@ h1 {
 }
 
 .vs-input {
-  padding: 10px 5px;
+  padding: 10px 10px;
   font-size: 1em;
 }
 
 .vs-input__label {
   font-size: 1em;
+}
+
+.form-page--3 {
+  text-align: center;
+}
+
+.form-done-img {
+  display: block;
+  margin: 50px auto;
+  max-width: 60%;
+}
+
+@media screen and (min-width: 426px) {
+  .form-done-img {
+    max-width: 40%;
+  }
 }
 
 .vs-input-parent,
