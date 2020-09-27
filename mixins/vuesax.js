@@ -14,11 +14,10 @@ export default {
 
     openLoading() {
       const loading = this.$vs.loading({
-        type: 'circles',
-        background: 'primary',
-        color: '#fff',
-        opacity: 1,
-        scale: 1.2,
+        background: '#fff',
+        color: 'primary',
+        opacity: 0.8,
+        scale: 1,
         text: 'Sedang mengirim...',
       });
 
