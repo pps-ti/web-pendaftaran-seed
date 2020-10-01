@@ -8,6 +8,17 @@ body {
   padding: 0 15px;
 }
 
+.angkatan-label {
+  display: block;
+  margin: 0 5px 7px;
+}
+
+.form-subtitle {
+  font-size: 1em;
+  font-weight: normal;
+  text-align: center;
+}
+
 @media screen and (max-width: 325px) {
   h1 {
     font-size: 1.8em;
@@ -35,13 +46,10 @@ body {
   z-index: -1;
 }
 
-.form-title {
-  margin-bottom: 20px;
-}
-
 .form-hr {
   border: none;
   border-bottom: 1px solid #aaa;
+  margin-top: 20px;
   margin-bottom: 30px;
 }
 
@@ -124,6 +132,25 @@ body {
   width: 95%;
   margin: 40px auto;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 425px) {
+  .radio-nilai .vs-radio {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .radio-nilai .vs-radio {
+    width: 13px;
+    height: 13px;
+  }
+
+  .scale-legend {
+    font-size: 0.6em;
+    text-align: center;
+  }
 }
 
 .blur-underlay {

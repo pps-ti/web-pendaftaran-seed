@@ -1,7 +1,10 @@
 <template>
   <div class="container grid">
     <form id="form" class="form-feedback" @submit.prevent="onSubmit">
-      <h1 class="form-title">Feedback <strong>SEED</strong></h1>
+      <h1 class="form-title">Feedback <strong>SEED #2</strong></h1>
+      <h2 class="form-subtitle">
+        Build a Flask App with NoSQL Database using MongoDB
+      </h2>
       <hr class="form-hr" />
       <div v-if="formStep === 1" class="form-page form-page--1">
         <label for="">NPM</label>
@@ -21,7 +24,7 @@
                   !$v.npm.isUnique && !checkingNpm && npm !== undefined
                 "
               >
-                NPM ini sudah terdaftar
+                NPM ini sudah pernah digunakan
               </span>
             </template>
           </vs-input>
@@ -54,10 +57,10 @@
         </vs-row>
 
         <label for="">
-          Dari skala 1-10 bagaimana pelatihan SEED kemarin?
+          Dari skala 1 (buruk) - 10 (baik), bagaimana pelatihan SEED kemarin?
         </label>
         <vs-row align="center">
-          1
+          <span class="scale-legend">1</span>
           <vs-radio
             v-model="q3"
             class="radio-nilai"
@@ -128,7 +131,7 @@
             val="10"
           >
           </vs-radio>
-          10
+          <span class="scale-legend">10</span>
         </vs-row>
 
         <label for="">
@@ -183,7 +186,7 @@
           alt="Thank you for filling the feedback form"
         />
 
-        Terimakasih telah mengisi form feedback SEED.
+        Terimakasih telah mengisi form feedback SEED #2.
       </div>
     </form>
   </div>
@@ -250,11 +253,6 @@ export default {
       required,
     },
   },
-  computed: {
-    validEmail() {
-      return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.surel);
-    },
-  },
   methods: {
     async onSubmit() {
       this.$v.$touch();
@@ -297,6 +295,18 @@ export default {
         }
       }
     },
+  },
+  head() {
+    return {
+      title: 'Form feedback SEED #2',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Form feedback SEED #2',
+        },
+      ],
+    };
   },
 };
 </script>

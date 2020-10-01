@@ -1,7 +1,10 @@
 <template>
   <div class="container grid">
     <form id="form" @submit.prevent="onSubmit">
-      <h1 class="form-title">Pendaftaran <strong>SEED</strong></h1>
+      <h1 class="form-title">Pendaftaran <strong>SEED #2</strong></h1>
+      <h2 class="form-subtitle">
+        Build a Flask App with NoSQL Database using MongoDB
+      </h2>
       <hr class="form-hr" />
       <div v-if="formStep === 1" class="form-page form-page--1">
         <vs-row>
@@ -35,6 +38,7 @@
             </template>
           </vs-input>
         </vs-row>
+        <label for="" class="angkatan-label">Angkatan: </label>
         <vs-row>
           <vs-select v-model="angkatan" placeholder="Angkatan">
             <template
@@ -60,17 +64,13 @@
           <vs-radio v-model="gender" name="gender" val="P">Perempuan</vs-radio>
         </vs-row>
         <vs-row>
-          <vs-input
-            v-model="surel"
-            type="email"
-            placeholder="Alamat surel (email)"
-          >
+          <vs-input v-model="surel" type="email" placeholder="Alamat email">
             <template v-if="validEmail" #message-success>
-              Surel Valid
+              Email Valid
             </template>
             <template #message-danger>
               <span v-if="!validEmail && surel !== undefined && surel !== ''"
-                >Surel tidak valid</span
+                >Email tidak valid</span
               >
               <span
                 v-if="
@@ -184,8 +184,8 @@
           alt="Registration success"
         />
 
-        Terimakasih telah mendaftar workshop SEED kali ini, silakan cek kotak
-        masuk alamat surel Anda.
+        Terimakasih telah mendaftar workshop SEED #2, silakan cek kotak masuk
+        email Anda.
       </div>
     </form>
   </div>
