@@ -321,6 +321,7 @@ export default {
             'https://pendaftaran-seed.netlify.app/.netlify/functions/send-mail',
             {
               recipient: this.surel,
+              recipientName: this.nama,
             }
           );
 
