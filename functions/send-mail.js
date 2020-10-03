@@ -55,7 +55,7 @@ exports.handler = (event, context, callback) => {
           <p>
             Perlu diketahui bahwa terdapat seleksi pendaftar SEED #2 oleh internal tim
             Lab PPS-TI. Kami akan mengumumkan perihal diterima/tidak nya anda sebagai
-            peserta SEED #2 pada tanggal 14 November mendatang sekaligus mengonfirmasi
+            peserta SEED #2 pada tanggal 14 Oktober mendatang sekaligus mengonfirmasi
             kehadiran anda.
           </p>
       
